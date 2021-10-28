@@ -49,6 +49,7 @@ public class MMOMana extends JavaPlugin {
 		MMOItems.plugin.setRPG(new DefaultHook());
 
 		Bukkit.getOnlinePlayers().forEach(this.dataManager::setup);
+
 		if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
 			new PAPIPlaceholders().register();
 			getLogger().log(Level.INFO, "Hooked onto PlaceholderAPI");
