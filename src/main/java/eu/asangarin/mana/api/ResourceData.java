@@ -2,7 +2,7 @@ package eu.asangarin.mana.api;
 
 import eu.asangarin.mana.MMOMana;
 import eu.asangarin.mana.api.event.ResourceRegainEvent;
-import io.lumine.mythic.lib.api.player.MMOPlayerData;
+import io.lumine.mythic.lib.player.MMOPlayerData;
 import io.lumine.mythic.lib.api.stat.modifier.StatModifier;
 import org.bukkit.Bukkit;
 
