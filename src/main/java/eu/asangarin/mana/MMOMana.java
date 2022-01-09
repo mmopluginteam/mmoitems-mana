@@ -20,9 +20,9 @@ public class MMOMana extends JavaPlugin {
 
 	/**
 	 * Data from players is cleared if they
-	 * have not logged in for the last 5 minutes
+	 * have not logged in for the last 60 minutes
 	 */
-	private static final long RESOURCE_DATA_TIMEOUT = 1000 * 60 * 5;
+	private static final long RESOURCE_DATA_TIMEOUT = 1000 * 60 * 60;
 
 	public void onLoad() {
 		plugin = this;
@@ -62,17 +62,17 @@ public class MMOMana extends JavaPlugin {
 		Bukkit.getScheduler().runTaskTimer(this, () -> {
 			for (ResourceData data : dataManager.getLoaded())
 				if (data.toMythicLib().isOnline()) {
-					data.giveMana(data.getStat(StatType.MANA_REGENERATION) * config.regenScale, ResourceRegainReason.REGENERATION);
-					data.giveStamina(data.getStat(StatType.STAMINA_REGENERATION) * config.regenScale, ResourceRegainReason.REGENERATION);
+					data.giveMana(data.getStat(StatType.MANA_REGENERATION) * config.refreshRate / 20, ResourceRegainReason.REGENERATION);
+					data.giveStamina(data.getStat(StatType.STAMINA_REGENERATION) * config.refreshRate / 20, ResourceRegainReason.REGENERATION);
 				}
 		}, 100L, config.refreshRate);
 
 		/*
 		 * Clear resource data for players who did not log in for the
-		 * past 5 minutes which should be enough to regen everything.
+		 * past 1 hour which should be enough to regen everything.
 		 */
 		Bukkit.getScheduler().runTaskTimerAsynchronously(this,
-				() -> dataManager.getLoaded().removeIf(data -> !data.toMythicLib().isOnline() && System.currentTimeMillis() - data.toMythicLib().getLastLogin() > RESOURCE_DATA_TIMEOUT),
-				20 * 10, 20 * 60 * 5);
+				() -> dataManager.getLoaded().removeIf(data -> !data.toMythicLib().isOnline() && System.currentTimeMillis() - data.toMythicLib().getLastLogActivity() > RESOURCE_DATA_TIMEOUT),
+				20 * 10, 20 * 60 * 60);
 	}
 }

@@ -11,8 +11,8 @@ default:
     stamina-regeneration: 0.5
 
 # The interval at which regeneration should happen in ticks.
-# Default value is 20 ticks which is the same as 1 second.
-refresh-rate: 20
+# Default value is 10 ticks which is the same as half a second.
+refresh-rate: 10
 
 # The percentage of their max mana/stamina which players
 # get as mana/stamina when logging in for the first time
@@ -27,9 +27,9 @@ resource-bar:
         char: █
         length: 20
         colors:
+            # You can use HEX colors too:
+            # whole: \#223344
             whole: AQUA
-            #You can use HEX colors too:
-            #whole: \#223344
             half: DARK_AQUA
             empty: WHITE
     stamina:

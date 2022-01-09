@@ -8,7 +8,6 @@ public class ManaConfig {
 
 	public double loginManaRatio;
 	public double loginStaminaRatio;
-	public double regenScale;
 
 	public int manaBarLength;
 	public int staminaBarLength;
@@ -25,7 +24,6 @@ public class ManaConfig {
 
 	public void loadOptions(FileConfiguration config) {
 		this.refreshRate = config.getInt("refresh-rate");
-		this.regenScale = config.getDouble("regen-scale");
 
 		this.loginManaRatio = config.getDouble("login-ratio.mana");
 		this.loginStaminaRatio = config.getDouble("login-ratio.stamina");

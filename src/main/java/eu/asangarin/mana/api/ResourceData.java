@@ -2,7 +2,7 @@ package eu.asangarin.mana.api;
 
 import eu.asangarin.mana.MMOMana;
 import eu.asangarin.mana.api.event.ResourceRegainEvent;
-import io.lumine.mythic.lib.player.MMOPlayerData;
+import io.lumine.mythic.lib.api.player.MMOPlayerData;
 import io.lumine.mythic.lib.api.stat.modifier.StatModifier;
 import org.bukkit.Bukkit;
 
@@ -27,25 +27,12 @@ public class ResourceData {
         this.stamina = MMOMana.plugin.config.loginStaminaRatio / 100.0D * this.getStat(StatType.MAX_STAMINA);
     }
 
-    /**
-     * @deprecated Use {@link #toMythicLib()} instead
-     */
-    @Deprecated
-    public MMOPlayerData toMMOLib() {
-        return toMythicLib();
-    }
-
     public MMOPlayerData toMythicLib() {
         return data;
     }
 
-    /**
-     * @deprecated Only works if the player is online.
-     *         Will throw a NPE if he is offline
-     */
-    @Deprecated
     public UUID getUniqueId() {
-        return data.getPlayer().getUniqueId();
+        return data.getUniqueId();
     }
 
     public double getMana() {
