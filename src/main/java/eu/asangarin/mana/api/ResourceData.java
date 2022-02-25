@@ -17,10 +17,9 @@ public class ResourceData {
     public ResourceData(MMOPlayerData data) {
         this.data = data;
 
-        data.getStatMap().getInstance("MAX_MANA").addModifier("manaAndStamina", new StatModifier(StatType.MAX_MANA.getBase()));
-        data.getStatMap().getInstance("MAX_STAMINA").addModifier("manaAndStamina", new StatModifier(StatType.MAX_STAMINA.getBase()));
-        data.getStatMap().getInstance("MANA_REGENERATION").addModifier("manaAndStamina", new StatModifier(StatType.MANA_REGENERATION.getBase()));
-        data.getStatMap().getInstance("STAMINA_REGENERATION").addModifier("manaAndStamina", new StatModifier(StatType.STAMINA_REGENERATION.getBase()));
+        // Register default stat modifiers
+        for (StatType stat : StatType.values())
+            new StatModifier("manaAndStamina", stat.name(), stat.getBase()).register(data);
 
         // Default resource ratios
         this.mana = MMOMana.plugin.config.loginManaRatio / 100.0D * this.getStat(StatType.MAX_MANA);
